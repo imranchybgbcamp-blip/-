@@ -1,121 +1,116 @@
+        
 <!DOCTYPE html>
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ইসলামিক জীবন - প্রো ২০২৬</title>
+    <title>ইসলামিক জীবন</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;700&family=Amiri&display=swap');
-        :root { --primary: #06402B; --secondary: #FFD700; --bg: #f4f7f6; --white: #ffffff; }
-        body { font-family: 'Hind Siliguri', sans-serif; margin: 0; background: var(--bg); color: #333; }
+        :root { --primary: #006400; --gold: #FFD700; --bg: #f4f7f6; }
+        body { font-family: 'Arial', sans-serif; background: var(--bg); margin: 0; padding: 0; }
+        .header { background: var(--primary); color: white; text-align: center; padding: 25px 15px; border-radius: 0 0 20px 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .header h1 { margin: 0; font-size: 26px; color: var(--gold); }
         
-        /* Ad Banner */
-        .ad-top { background: #fff; padding: 5px; text-align: center; border-bottom: 1px solid #ddd; position: sticky; top: 0; z-index: 100; }
+        /* Adsterra Container */
+        .ad-container { margin: 15px auto; text-align: center; background: #fff; padding: 10px; border: 1px solid #ddd; overflow: hidden; }
 
-        /* Update Modal */
-        #updateModal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); align-items: center; justify-content: center; }
-        .modal-box { background: white; padding: 30px; border-radius: 20px; text-align: center; width: 85%; max-width: 400px; }
-        .upd-btn { background: var(--primary); color: white; padding: 12px 25px; border-radius: 30px; text-decoration: none; display: inline-block; margin-top: 15px; font-weight: bold; }
+        /* Menu */
+        .grid-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; padding: 20px; }
+        .menu-card { background: white; padding: 20px; border-radius: 15px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.05); cursor: pointer; transition: 0.3s; }
+        .menu-card:active { transform: scale(0.95); }
+        .menu-card i { font-size: 35px; color: var(--primary); margin-bottom: 10px; }
+        .menu-card span { display: block; font-weight: bold; color: #333; }
 
-        header { background: var(--primary); color: white; padding: 25px; text-align: center; border-radius: 0 0 30px 30px; }
-        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; padding: 15px; }
-        .card { background: white; padding: 25px 10px; border-radius: 18px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); cursor: pointer; border-bottom: 5px solid var(--secondary); transition: 0.3s; }
-        .card i { font-size: 35px; color: var(--primary); margin-bottom: 12px; }
-        .card span { font-weight: bold; font-size: 16px; display: block; }
+        /* Surah List Page */
+        #surah-page { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 100; overflow-y: auto; padding: 20px; box-sizing: border-box; }
+        .back-btn { background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 8px; margin-bottom: 20px; font-weight: bold; cursor: pointer; }
+        .surah-item { padding: 15px; border-bottom: 1px solid #eee; font-size: 18px; color: #444; display: flex; justify-content: space-between; align-items: center; }
 
-        .section { display: none; padding: 20px; }
-        .item-card { background: white; padding: 18px; border-radius: 15px; margin-bottom: 15px; border-left: 6px solid var(--primary); box-shadow: 0 3px 10px rgba(0,0,0,0.03); }
-        .arabic { font-family: 'Amiri', serif; font-size: 26px; text-align: right; direction: rtl; line-height: 2; color: #000; background: #fdfdfd; padding: 15px; border-radius: 10px; margin: 10px 0; }
-        .back-btn { background: var(--primary); color: white; padding: 10px 20px; border-radius: 30px; margin-bottom: 20px; display: inline-block; cursor: pointer; border: none; font-weight: bold; }
+        /* Surah View Modal */
+        #surah-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 200; overflow-y: auto; padding: 20px; box-sizing: border-box; }
+        .arabic { font-size: 24px; color: var(--primary); text-align: right; margin: 15px 0; line-height: 1.8; font-family: 'Times New Roman', serif; }
+        .bangla { font-size: 18px; color: #333; margin-bottom: 25px; line-height: 1.6; border-bottom: 1px solid #ddd; padding-bottom: 10px; }
     </style>
 </head>
 <body>
 
-    <div class="ad-top">
-        <div style="width:320px; height:50px; background:#f0f0f0; margin:auto; line-height:50px; color:#999; font-size:12px; border:1px dashed #ccc;">
-            বিজ্ঞাপন এরিয়া (AdMob)
-        </div>
-    </div>
-
-    <div id="updateModal">
-        <div class="modal-box">
-            <i class="fas fa-arrow-circle-up" style="font-size: 50px; color: var(--primary);"></i>
-            <h2>নতুন আপডেট!</h2>
-            <p>অ্যাপে নতুন সূরা ও সকাল-সন্ধ্যার আমল যোগ করা হয়েছে।</p>
-            <a href="javascript:location.reload()" class="upd-btn">এখনই আপডেট করুন</a>
-        </div>
-    </div>
-
-    <header id="header-main">
+    <div class="header">
         <h1>ইসলামিক জীবন</h1>
-        <p>কুরআন, হাদিস ও নামাজের সঠিক সময়</p>
-    </header>
+        <p>দ্বীনি ইলম ও আমল</p>
+    </div>
 
-    <main id="home-sec" class="section" style="display:block;">
-        <div class="grid">
-            <div class="card" onclick="openSec('quran')"><i class="fas fa-quran"></i><span>১১টি পূর্ণ সূরা</span></div>
-            <div class="card" onclick="openSec('azkar')"><i class="fas fa-cloud-sun"></i><span>সকাল-সন্ধ্যা</span></div>
-            <div class="card" onclick="openSec('dua')"><i class="fas fa-hands-praying"></i><span>বিপদের দোয়া</span></div>
-            <div class="card" onclick="openSec('namaz')"><i class="fas fa-clock"></i><span>নামাজের সময়</span></div>
-            <div class="card" onclick="openSec('qibla')"><i class="fas fa-compass"></i><span>কিবলা কম্পাস</span></div>
-            <div class="card" onclick="window.location.href='tel:01605969856'"><i class="fas fa-phone"></i><span>সরাসরি সাপোর্ট</span></div>
+    <div class="ad-container">
+        <script> atOptions = { 'key' : '844fbcd18257b08f493940b654828c18', 'format' : 'iframe', 'height' : 60, 'width' : 468, 'params' : {} }; </script>
+        <script src="https://www.highperformanceformat.com/844fbcd18257b08f493940b654828c18/invoke.js"></script>
+    </div>
+
+    <div class="grid-container">
+        <div class="menu-card" onclick="showSurahList()">
+            <i class="fas fa-book-quran"></i>
+            <span>১১টি সুরা</span>
         </div>
-    </main>
+        <div class="menu-card" onclick="alert('শীঘ্রই আসছে')">
+            <i class="fas fa-hands-praying"></i>
+            <span>প্রয়োজনীয় দোয়া</span>
+        </div>
+    </div>
 
-    <div id="content-sec" class="section">
-        <button class="back-btn" onclick="openSec('home')"><i class="fas fa-arrow-left"></i> ফিরে যান</button>
-        <div id="dynamic-content"></div>
+    <div id="surah-page">
+        <button class="back-btn" onclick="hideSurahList()">← ফিরে যান</button>
+        <h2 style="color: var(--primary);">সুরা সমূহ</h2>
+        <div id="list-container"></div>
+    </div>
+
+    <div id="surah-modal">
+        <button class="back-btn" onclick="closeModal()">← সূরা তালিকা</button>
+        <h2 id="modal-title" style="text-align:center; color: var(--primary);"></h2>
+        <div id="modal-content"></div>
+        <div class="ad-container">
+            <script src="https://www.highperformanceformat.com/844fbcd18257b08f493940b654828c18/invoke.js"></script>
+        </div>
     </div>
 
     <script>
-        const appVer = "1.0";
-        // আপনার GitHub ইউজারনেম imrar অনুযায়ী লিঙ্ক সেট করা হয়েছে
-        const versionUrl = "https://raw.githubusercontent.com/imrar/islamic-jibon/main/version.txt";
+        // ১১টি সূরার ডাটাবেস
+        const surahData = [
+            { id: 1, name: "সুরা ফাতিহা", content: [
+                { a: "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ", b: "শুরু করছি আল্লাহর নামে যিনি পরম করুণাময়, অতি দয়ালু।" },
+                { a: "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ", b: "যাবতীয় প্রশংসা আল্লাহর জন্য, যিনি সকল জগতের পালনকর্তা।" }
+            ]},
+            { id: 2, name: "সুরা ফিল", content: [
+                { a: "أَلَمْ تَرَ كَيْفَ فَعَلَ رَبُّكَ بِأَصْحَابِ الْفِيلِ", b: "আপনি কি দেখেননি আপনার পালনকর্তা হস্তিবাহিনীর সাথে কি রূপ ব্যবহার করেছেন?" }
+            ]},
+            // এখানে আপনি একইভাবে ১১টি সূরা যোগ করতে পারবেন।
+            { id: 3, name: "সুরা ইখলাস", content: [
+                { a: "قُلْ هُوَ اللَّهُ أَحَدٌ", b: "বলুন, তিনি আল্লাহ, এক।" },
+                { a: "اللَّهُ الصَّمَدُ", b: "আল্লাহ অমুখাপেক্ষী।" }
+            ]}
+        ];
 
-        function openSec(id) {
-            if(id === 'home') {
-                document.getElementById('home-sec').style.display = 'block';
-                document.getElementById('header-main').style.display = 'block';
-                document.getElementById('content-sec').style.display = 'none';
-            } else {
-                document.getElementById('home-sec').style.display = 'none';
-                document.getElementById('header-main').style.display = 'none';
-                document.getElementById('content-sec').style.display = 'block';
-                renderContent(id);
-            }
-            window.scrollTo(0,0);
+        function showSurahList() {
+            const container = document.getElementById('list-container');
+            container.innerHTML = '';
+            surahData.forEach(s => {
+                container.innerHTML += `<div class="surah-item" onclick="openSurah(${s.id})"><span>${s.name}</span> <i class="fas fa-chevron-right"></i></div>`;
+            });
+            document.getElementById('surah-page').style.display = 'block';
         }
 
-        function renderContent(type) {
-            const container = document.getElementById('dynamic-content');
-            let html = "";
-            if(type === 'quran') {
-                html = `<div class="item-card"><h3>সূরা ফাতিহা</h3><div class="arabic">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ...</div><p>সব প্রশংসা আল্লাহর জন্য যিনি জগতসমূহের প্রতিপালক।</p></div>
-                        <div class="item-card"><h3>সূরা ইখলাস</h3><div class="arabic">قُلْ هُوَ اللَّهُ أَহাদٌ...</div><p>বলুন, তিনি আল্লাহ এক।</p></div>`;
-                // এখানে বাকি সূরাগুলো একইভাবে যোগ করা যাবে
-            } else if(type === 'azkar') {
-                html = `<div class="item-card"><h3>সকালের আমল</h3><p>আয়তুল কুরসি পাঠ করা অত্যন্ত ফজিলতপূর্ণ।</p></div>`;
-            } else if(type === 'namaz') {
-                html = `<h3>নামাজের ওয়াক্ত (ঢাকা)</h3>
-                        <table style="width:100%; background:white; border-radius:10px;">
-                            <tr style="background:var(--primary); color:white;"><th>ওয়াক্ত</th><th>শুরু</th></tr>
-                            <tr><td>ফজর</td><td>০৫:১৫</td></tr><tr><td>যোহর</td><td>১২:১৫</td></tr>
-                        </table>`;
-            }
-            container.innerHTML = html;
+        function hideSurahList() { document.getElementById('surah-page').style.display = 'none'; }
+
+        function openSurah(id) {
+            const surah = surahData.find(s => s.id === id);
+            document.getElementById('modal-title').innerText = surah.name;
+            const contentDiv = document.getElementById('modal-content');
+            contentDiv.innerHTML = '';
+            surah.content.forEach(p => {
+                contentDiv.innerHTML += `<p class="arabic">${p.a}</p><p class="bangla">${p.b}</p>`;
+            });
+            document.getElementById('surah-modal').style.display = 'block';
         }
 
-        async function checkUpdate() {
-            try {
-                const res = await fetch(versionUrl);
-                const serverVer = await res.text();
-                if(serverVer.trim() > appVer) {
-                    document.getElementById('updateModal').style.display = 'flex';
-                }
-            } catch(e) {}
-        }
-        setTimeout(checkUpdate, 3000);
+        function closeModal() { document.getElementById('surah-modal').style.display = 'none'; }
     </script>
 </body>
 </html>
